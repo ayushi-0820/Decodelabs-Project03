@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spendly — Expense Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+
+      <div class="brand-row">
+        <div>
+          <div class="brand-name">Spend<span>ly</span></div>
+          <p class="brand-sub">Expense Tracker</p>
+        </div>
+        <button class="theme-btn" id="theme-btn">
+          <span class="theme-icon" id="theme-icon">☀</span>
+          <span id="theme-label">Light</span>
+        </button>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- ADD TRANSACTION FORM -->
+      <section>
+        <p class="section-label">Add Transaction</p>
+
+        <div class="type-toggle">
+          <button class="type-btn income-btn active-income" id="btn-income">+ Income</button>
+          <button class="type-btn expense-btn" id="btn-expense">- Expense</button>
+        </div>
+
+        <div class="field">
+          <label for="desc">Description</label>
+          <input type="text" id="desc" placeholder="e.g. Grocery, Salary" maxlength="40" />
+        </div>
+
+        <div class="field">
+          <label for="amount">Amount (Rs.)</label>
+          <input type="number" id="amount" placeholder="0" min="0" />
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+            <option value="Salary">Salary</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <button class="add-btn" id="add-btn">Add Transaction</button>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- QUICK STATS -->
+      <section>
+        <p class="section-label">Quick Stats</p>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-val" id="stat-count">0</div>
+            <div class="stat-lbl">Transactions</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="stat-avg">Rs.0</div>
+            <div class="stat-lbl">Avg Expense</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="stat-top">—</div>
+            <div class="stat-lbl">Top Category</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="stat-savings">0%</div>
+            <div class="stat-lbl">Savings Rate</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- SEARCH -->
+      <section>
+        <p class="section-label">Search</p>
+        <div class="field" style="margin-bottom: 0;">
+          <input type="text" id="search-input" placeholder="Search by name or category..." />
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main">
+
+      <!-- SUMMARY CARDS -->
+      <div class="summary-grid">
+        <div class="card balance-card">
+          <p class="card-label">Net Balance</p>
+          <p class="card-amount" id="balance">Rs. 0</p>
+          <p class="card-sub" id="balance-sub">No transactions yet</p>
+        </div>
+        <div class="card income-summary-card">
+          <p class="card-label">Total Income</p>
+          <p class="card-amount green-text" id="total-income">Rs. 0</p>
+          <p class="card-sub" id="income-count">0 transactions</p>
+        </div>
+        <div class="card expense-summary-card">
+          <p class="card-label">Total Expenses</p>
+          <p class="card-amount red-text" id="total-expense">Rs. 0</p>
+          <p class="card-sub" id="expense-count">0 transactions</p>
+        </div>
+      </div>
+
+      <!-- CATEGORY BREAKDOWN -->
+      <div class="card breakdown-card">
+        <div class="breakdown-header">
+          <p class="section-label" style="margin: 0;">Spending by Category</p>
+          <div class="month-tabs" id="month-tabs"></div>
+        </div>
+        <div class="breakdown-grid" id="breakdown-grid">
+          <p class="no-data-msg">No expense data yet</p>
+        </div>
+      </div>
+
+      <!-- TRANSACTIONS LIST -->
+      <div>
+        <div class="list-header">
+          <p class="section-label" style="margin: 0;">Transactions</p>
+          <div class="list-controls">
+            <div class="filter-pills">
+              <button class="pill active" data-filter="all">All</button>
+              <button class="pill" data-filter="income">Income</button>
+              <button class="pill" data-filter="expense">Expense</button>
+            </div>
+            <button class="clear-btn" id="clear-btn">Clear All</button>
+          </div>
+        </div>
+        <div class="tx-list" id="tx-list"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
